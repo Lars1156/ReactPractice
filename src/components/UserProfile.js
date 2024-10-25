@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 
 function UserProfile (){
     const [user , setUser ] = useState({
@@ -13,7 +13,16 @@ function UserProfile (){
             contactNumber: 33446312,
             userEmail : "kishankul"
         }
-    })
+    });
+    const [count , setCount] = useState(0);
+    const [second , setSecound ] = useState(0);
+
+    useEffect(()=>{
+      const interval = setInterval(()=>{
+        setSecound((preSecound)=> preSecound+1)
+      },1000)
+      return()=> clearInterval(interval)
+    },[]);
     const upadateName = () =>{
         setUser(prevState => ({
             ...prevState, 
@@ -40,6 +49,7 @@ function UserProfile (){
   
 
   return(
+    <>
      <div>
         <h2>User Profile</h2>
         <p>Name: {user.name}</p>
@@ -53,7 +63,11 @@ function UserProfile (){
         <p>Email: {userDeatails.userContact.userEmail}</p>
         <p>Contact:{userDeatails.userContact.contactNumber}</p>
         <button  onClick={UpadetEmail}>ChangeEmail</button>
+        <p>Count: {count}</p>
+        <button onClick={() => setCount(count + 1)}>Increment</button>
+        <div>Seconds: {second}</div>;
      </div>
+     </>
   )
 }
 export default UserProfile;
