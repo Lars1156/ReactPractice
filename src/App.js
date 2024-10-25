@@ -1,4 +1,3 @@
-import './App.css';
 import MyForm from './components/MyFrom';
 import ParentComponent from './components/PraentComponent';
 import {Header , Footer} from './components/Main'
